@@ -1,0 +1,14 @@
+tree = [
+	"POO I": {
+		"fase": 1,
+		"cor": 505050
+	},
+	"POO II": {
+		"fase": 2,
+		"cor": 505050
+	}
+];
+edges = [
+	["POO I", "POO II"],
+	["Cálculo A", "Cálculo B"]
+];
