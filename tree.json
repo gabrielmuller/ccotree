@@ -1,14 +1,20 @@
-tree = [
+var APP = {};
+APP.tree = {
+"nodes": {
 	"POO I": {
 		"fase": 1,
-		"cor": 505050
+		"linha": 1,
+		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2597",
+		"horas": 108
 	},
 	"POO II": {
 		"fase": 2,
-		"cor": 505050
+		"cor": 1,
+		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2660",
+		"horas": 108
 	}
-];
-edges = [
-	["POO I", "POO II"],
-	["Cálculo A", "Cálculo B"]
-];
+},
+"edges": [
+	["POO I", "POO II"]
+]
+}

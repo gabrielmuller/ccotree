@@ -1,0 +1,22 @@
+
+APP.infoDisciplina = {
+	"fase": -1,
+	"linha": -1,
+	"ementa": "",
+	"horas": -1
+}
+
+APP.disciplina = function (info) {
+	var that = {};
+
+	that.get_info = function () {
+		return info;
+	};
+
+	return that;
+}
+
+APP["POO I"] = APP.disciplina(APP.tree.nodes["POO I"]);
+alert(APP["POO I"].get_info().fase);
+
+	
