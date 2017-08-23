@@ -1,17 +1,293 @@
+// linhas: 1 = SW, 2 = HW, 3 = MTM, 4 = TC, 5 = INTRO, 6 = REDES
 var APP = {};
 APP.tree = {
 "nodes": {
-	"POO I": {
+	"Circuitos e Técnicas Digitais": {
+		"código": "EEL5105",
+		"fase": 1,
+		"linha": 2,
+		"ementa":,
+		"horas": 90
+	},
+	"Introdução à Computação": {
+		"código": "INE5401",
+		"fase": 1,
+		"linha": 5,
+		"ementa":,
+		"horas": 36
+	},
+	"Programação Orientada a Objetos I": {
+		"código": "INE5402",
 		"fase": 1,
 		"linha": 1,
 		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2597",
 		"horas": 108
 	},
-	"POO II": {
+	"Fundamentos de Matemática Discreta para Computação": {
+		"código": "INE5403",
+		"fase": 1,
+		"linha": 4,
+		"ementa":,
+		"horas": 108
+	},
+	"Cálculo 1": {
+		"código": "MTM3100",
+		"fase": 1,
+		"linha": 3,
+		"ementa":,
+		"horas": 72
+	},
+	//				**** 2 fase ****
+	"Programação Orientada a Objetos II": {
+		"código": "INE5404",
 		"fase": 2,
-		"cor": 1,
+		"linha": 1,
 		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2660",
 		"horas": 108
+	},
+	"Probabilidade e Estatística": {
+		"código": "INE5405",
+		"fase": 2,
+		"linha": 3,
+		"ementa":,
+		"horas": 90
+	},
+	"Sistemas Digitais": {
+		"código": "INE5406",
+		"fase": 2,
+		"linha": 2,
+		"ementa":,
+		"horas": 90
+	},
+	"Ciência, Tecnologia e Sociedade": {
+		"código": "INE5405",
+		"fase": 2,
+		"linha": 5,
+		"ementa":,
+		"horas": 54
+	},
+	"Cálculo 2": {
+		"código": "MTM3102",
+		"fase": 2,
+		"linha": 3,
+		"ementa":,
+		"horas": 72
+	},
+	"Geometria Analítica": {
+		"código": "MTM5512",
+		"fase": 2,
+		"linha": 3,
+		"ementa":,
+		"horas": 72
+	},
+	//			**** 3 fase ***
+	"Estruturas de Dados": {
+		"código": "INE5408",
+		"fase": 3,
+		"linha": 1,
+		"ementa":,
+		"horas": 108
+	},
+	"Cálculo Numérico para Computação": {
+		"código": "INE5409",
+		"fase": 3,
+		"linha": 3,
+		"ementa":,
+		"horas": 72
+	},
+	"Programação Concorrente": {
+		"código": "INE5410",
+		"fase": 3,
+		"linha": 1,
+		"ementa":,
+		"horas": 72
+	},
+	"Organização de Computadores": {
+		"código": "INE5411",
+		"fase": 3,
+		"linha": 2,
+		"ementa":,
+		"horas": 108
+	},
+	"Álgebra Linear": {
+		"código": "MTM5245",
+		"fase": 3,
+		"linha": 3,
+		"ementa":,
+		"horas": 72
+	},
+	//			**** 4 fase ****
+	"Sistemas Operacionais I": {
+		"código": "INE5412",
+		"fase": 4,
+		"linha": 2,
+		"ementa":,
+		"horas": 72
+	},
+	"Grafos": {
+		"código": "INE5413",
+		"fase": 4,
+		"linha": 4,
+		"ementa":,
+		"horas": 72
+	},
+	"Redes de Computadores I": {
+		"código": "INE5414",
+		"fase": 4,
+		"linha": 6,
+		"ementa":,
+		"horas": 72
+	},
+	"Teoria da Computação": {
+		"código": "INE5415",
+		"fase": 4,
+		"linha": 4,
+		"ementa":,
+		"horas": 72
+	},
+	"Paradigmas de Programação": {
+		"código": "INE5416",
+		"fase": 4,
+		"linha": 4,
+		"ementa":,
+		"horas": 90
+	},
+	"Engenharia de Software I": {
+		"código": "INE5417",
+		"fase": 4,
+		"linha": 1,
+		"ementa":,
+		"horas": 90
+	},
+	//			**** 5 Fase ****
+	"Computação Distribuída": {
+		"código": "INE5418",
+		"fase": 5,
+		"linha": 2,
+		"ementa":,
+		"horas": 72
+	},
+	"Engenharia de Software II": {
+		"código": "INE5419",
+		"fase": 5,
+		"linha": 1,
+		"ementa":,
+		"horas": 72
+	},
+	"Computação Gráfica": {
+		"código": "INE5420",
+		"fase": 5,
+		"linha": 3,
+		"ementa":,
+		"horas": 72
+	},
+	"Linguagens Formais e Compiladores": {
+		"código": "INE5421",
+		"fase": 5,
+		"linha": 4,
+		"ementa":,
+		"horas": 72
+	},
+	"Redes de Computadores II": {
+		"código": "INE5422",
+		"fase": 5,
+		"linha": 6,
+		"ementa":,
+		"horas": 72
+	},
+	"Banco de Dados I": {
+		"código": "INE5423",
+		"fase": 5,
+		"linha": 1,
+		"ementa":,
+		"horas": 72
+	},
+	//			**** 6 fase ****
+	"Sistemas Operacionais II": {
+		"código": "INE5424",
+		"fase": 6,
+		"linha": 2,
+		"ementa":,
+		"horas": 72
+	},
+	"Modelagem e Simulação": {
+		"código": "INE5425",
+		"fase": 6,
+		"linha": 3,
+		"ementa":,
+		"horas": 72
+	},
+	"Construção de Compiladores": {
+		"código": "INE5426",
+		"fase": 6,
+		"linha": 4,
+		"ementa":,
+		"horas": 72
+	},
+	"Planejamento e Gestão de Projetos": {
+		"código": "INE5427",
+		"fase": 6,
+		"linha": 1,
+		"ementa":,
+		"horas": 72
+	},
+	"Inteligência Artificial": {
+		"código": "INE5430",
+		"fase": 6,
+		"linha": 4,
+		"ementa":,
+		"horas": 72
+	},
+	"Introdução ao Trabalho de Conclusão de Curso": {
+		"código": "INE5453",
+		"fase": 6,
+		"linha": 1,
+		"ementa":,
+		"horas": 18
+	},
+	//			**** 7 fase ****
+	"Informática e Sociedade": {
+		"código": "INE5428",
+		"fase": 7,
+		"linha": 5,
+		"ementa":,
+		"horas": 72
+	},
+	"Segurança em Computação": {
+		"código": "INE5429",
+		"fase": 7,
+		"linha": 4,
+		"ementa":,
+		"horas": 72
+	},
+	"Sistemas Multimídia": {
+		"código": "INE5431",
+		"fase": 7,
+		"linha": 6,
+		"ementa":,
+		"horas": 72
+	},
+	"Banco de Dados II": {
+		"código": "INE5432",
+		"fase": 7,
+		"linha": 1,
+		"ementa":,
+		"horas": 72
+	},
+	"Trabalho de Conclusão de Curso I (TCC)": {
+		"código": "INE5433",
+		"fase": 7,
+		"linha": 1,
+		"ementa":,
+		"horas": 108
+	},
+	//			**** 8 fase ****
+	"Trabalho de Conclusão de Curso II (TCC)": {
+		"código": "INE5434",
+		"fase": 8,
+		"linha": 1,
+		"ementa":,
+		"horas": 162
 	}
 },
 "edges": [
