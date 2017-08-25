@@ -1,45 +1,60 @@
+﻿"use strict";
 
+//objeto infoDisciplina padrão
 APP.infoDisciplina = {
-	"fase": -1,
-	"linha": -1,
-	"ementa": "",
-	"horas": -1
-}
-
-APP.disciplina = function (info) {
-	var that = {};
-
-	that.get_fase = function () {
-		return info.fase;
-	};
-	that.get_linha = function () {
-		return info.linha;
-	};
-	that.get_ementa = function () {
-		return info.ementa;
-	};
-	that.get_horas = function () {
-		return info.horas;
-	};
-
-	return that;
+    "fase": -1,
+    "linha": -1,
+    "ementa": "",
+    "horas": -1
 };
 
+//retorna novo objeto disciplina
+APP.disciplina = function (info) {
+    var that = {};
+
+    //getters garantem privacidade
+    that.getFase = function () {
+        return info.fase;
+    };
+    that.getLinha = function () {
+        return info.linha;
+    };
+    that.getEmenta = function () {
+        return info.ementa;
+    };
+    that.getHoras = function () {
+        return info.horas;
+    };
+
+    //retorna informações resumidas em string
+    that.toString = function () {
+        var output = "";
+
+        output += "Fase: " + that.getFase() + "\n";
+        output += "Linha: " + that.getLinha() + "\n";
+        output += "Ementa: " + that.getEmenta() + "\n";
+        output += "Horas-aula: " + that.getHoras() + "\n";
+
+        return output;
+    };
+
+    return that;
+};
+
+//conterá todos objetos disciplina instanciadas
 APP.disciplinas = {};
+
+//instancia todas disciplinas a partir do JSON
+//e adiciona em APP.disciplinas
 APP.tree.criarDisciplinas = function () {
-	for (node in this.nodes) {
-		if (this.nodes.hasOwnProperty(node)) {
-			var novaDisciplina = APP.disciplina(this.nodes[node]);
-			APP.disciplinas[node] = novaDisciplina;
-		}
-	}
+    var that = this;
+    Object.keys(that.nodes).forEach(function (node) {
+        var novaDisciplina = APP.disciplina(that.nodes[node]);
+        APP.disciplinas[node] = novaDisciplina;
+    });
 };
 
 APP.tree.criarDisciplinas();
 
-for (disc in APP.disciplinas) {
-	console.log(APP.disciplinas[disc].get_ementa());
-}
-
-
-			
+//exemplo de teste
+console.log(APP.disciplinas["Sistemas Digitais"].toString());
