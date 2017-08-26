@@ -57,4 +57,4 @@ APP.tree.criarDisciplinas = function () {
 APP.tree.criarDisciplinas();
 
 //exemplo de teste
-console.log(APP.disciplinas["Sistemas Digitais"].toString());
+//console.log(APP.disciplinas["Sistemas Digitais"].toString());
