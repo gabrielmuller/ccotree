@@ -10,7 +10,7 @@ APP.infoDisciplina = {
 
 //retorna novo objeto disciplina
 APP.disciplina = function (info) {
-    var that = {};
+    let that = {};
 
     //getters garantem privacidade
     that.getFase = function () {
@@ -28,9 +28,9 @@ APP.disciplina = function (info) {
 
     //retorna informações resumidas em string
     that.toString = function () {
-        var output = "";
+        let output = "";
 
-        output += "Fase: " + that.getFase() + "\n";
+        output += "Fase: " + that.fase + "\n";
         output += "Linha: " + that.getLinha() + "\n";
         output += "Ementa: " + that.getEmenta() + "\n";
         output += "Horas-aula: " + that.getHoras() + "\n";
@@ -47,9 +47,9 @@ APP.disciplinas = {};
 //instancia todas disciplinas a partir do JSON
 //e adiciona em APP.disciplinas
 APP.tree.criarDisciplinas = function () {
-    var that = this;
+    let that = this;
     Object.keys(that.nodes).forEach(function (node) {
-        var novaDisciplina = APP.disciplina(that.nodes[node]);
+        let novaDisciplina = APP.disciplina(that.nodes[node]);
         APP.disciplinas[node] = novaDisciplina;
     });
 };
