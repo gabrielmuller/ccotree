@@ -14,9 +14,9 @@ APP.coresLinhas = [
 
 APP.coresSelecao = {
 	"padrao": "#FFFFFF",
-	"requisito": "#7CB342",
-	"posterior": "#3949AB",
-	"selecionado": "#0091EA",
+	"requisito": "#F8BBD0",
+	"posterior": "#E1BEE7",
+	"selecionado": "#64B5F6",
 }
 
 
@@ -33,10 +33,13 @@ class View {
 
 	update(disciplina) {
 		this.checarTodas();
-		let discDOM = document.getElementById("disciplina" + disciplina.id);
+		let id = "disciplina" + disciplina.id;
+		let discDOM = document.getElementById(id);
 		if (discDOM === null) {
 			console.log("Aviso: update chamado antes da criação de uma disciplina.");
 		} else {
+			let imgDOM = document.getElementById(id + "erro");
+			imgDOM.style.visibility = disciplina.errada ? 'visible' : 'hidden';
 			let leftPos = (disciplina.posX - 1) * this.larguraDisciplina + APP.margem;
 			let topPos = disciplina.posY * this.alturaDisciplina + APP.margem;
 			discDOM.style.left = leftPos;
@@ -48,13 +51,14 @@ class View {
 
 	criar(disciplina) {
 		let id = 'disciplina' + disciplina.id;
-		let tag = '<div id="' + id + '">' + disciplina.nome + "</div>";
-
+		let tag = '<div id="' + id + '">' + disciplina.nome;
 		document.body.innerHTML += tag;
 
 		let discDOM = document.getElementById(id);
-		discDOM.innerHTML += '<hr id="' + id + 'color"></div>';
-		let colorDOM = document.getElementById(id + 'color');
+		discDOM.innerHTML += '<hr id="' + id + 'cor"></div>';
+		discDOM.innerHTML += '<img id="' + id + 'erro' + 
+		'" src="erro.png" title="Erro de requisito"></div>';
+		let colorDOM = document.getElementById(id + 'cor');
 		colorDOM.style["border-color"] = APP.coresLinhas[disciplina.linha - 1];
 	}
 
