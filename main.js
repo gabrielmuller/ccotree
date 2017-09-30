@@ -1,45 +1,28 @@
-var canvas = document.getElementById('graph');
-var ctx = canvas.getContext('2d'); 
-var holding = false;
+window.onload = function () {
+//conterá todos objetos disciplina instanciadas
+APP.disciplinas = {};
 
-ctx.font = '30px Arial';
-
-var pos = 0;
-var size = {
-	x: 150,
-	y: 100
+//instancia todas disciplinas a partir do JSON
+//e adiciona em APP.disciplinas
+APP.tree.criarDisciplinas = function () {
+    let that = this;
+    Object.keys(that.nodes).forEach(function (node, id) {
+        let novaDisciplina = new Disciplina(that.nodes[node], node, id);
+        APP.disciplinas[node] = novaDisciplina;
+    });
 };
 
-function clearAll() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
+APP.tree.criarDisciplinas();
 
-function draw(e) {
-	if (holding) {
-		var mousePos = getMousePos(canvas, e);
-		var drawPos = {
-			x: mousePos.x - size.x/2,
-			y: mousePos.y - size.y/2
-		};
-		clearAll();
-		ctx.fillStyle = 'orange';
-		ctx.fillRect(drawPos.x, drawPos.y, size.x, size.y);
+//cria grade e view
+APP.grade = new Grade();
+APP.view = new View(APP.largura + APP.margem, APP.altura + APP.margem);
+APP.view.criarTodas();
+APP.view.updateTodas();
+APP.control = new Control();
+APP.control.criarTodas();
 
-		ctx.fillStyle = 'black';
-		ctx.fillText('Javal', drawPos.x + 40, drawPos.y + 40);
-	}
-}
-
-window.addEventListener('mousemove', draw, false);
-window.addEventListener('mousedown', function(e){holding = true; draw(e)}, false);
-window.addEventListener('mouseup', function(){holding = false;}, false);
-
-function getMousePos(canvas, evt) {
-	var rect = canvas.getBoundingClientRect();
-	return {
-		x: evt.clientX - rect.left,
-		y: evt.clientY - rect.top
-	}
-}
-
-
+let remv = APP.grade.removerDisciplina(2, 1);
+APP.grade.adicionarDisciplina(remv, 1, 0);
+APP.view.updateTodas();
+};
