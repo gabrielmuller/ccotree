@@ -71,6 +71,7 @@ class View {
 
 		let discDOM = document.getElementById(id);
 		discDOM.innerHTML += '<hr id="' + id + 'cor"></div>';
+		discDOM.innerHTML += disciplina.codigo;
 		discDOM.innerHTML += '<img id="' + id + 'erro' + 
 		'" src="erro.png" title="Erro de requisito"></div>';
 		let colorDOM = document.getElementById(id + 'cor');
