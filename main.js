@@ -15,8 +15,8 @@ APP.tree.criarDisciplinas = function () {
 APP.tree.criarDisciplinas();
 
 //cria grade e view
-APP.grade = new Grade();
 APP.view = new View(APP.largura + APP.margem, APP.altura + APP.margem);
+APP.grade = new Grade();
 APP.view.criarTodas();
 APP.view.updateTodas();
 APP.control = new Control();

@@ -5,6 +5,7 @@ class Control {
 		discDOM.style.cursor = 'pointer';
 		discDOM.onclick = function () {
 			disciplina.selecionar();
+			APP.view.updateSidebar(disciplina);
 			APP.view.updateTodas();
 		}
 
