@@ -73,6 +73,17 @@ class View {
 		let id = 'ha' + fase;
 		let haDOM = document.getElementById(id);
 		haDOM.innerHTML = APP.grade.horasAula(fase) + ' H/A';
+
+		haDOM.innerHTML += '<img id="' + id + 'erro' + 
+	    '" src="erro.png" title="H/A deve ser entre [15, 30]"></div>';
+	    let imgDOM = document.getElementById(id + "erro");
+	    if (APP.grade.horasAula(fase) > 30) {
+	     	imgDOM.style.visibility = 'visible';
+	    } else if (APP.grade.horasAula(fase) < 15) {
+	    	imgDOM.style.visibility = 'visible';
+	    } else {
+	    	imgDOM.style.visibility = 'hidden';
+	    }
 	}
 
 	updateFases() {
