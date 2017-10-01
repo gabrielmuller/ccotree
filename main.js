@@ -21,8 +21,4 @@ APP.view.criarTodas();
 APP.view.updateTodas();
 APP.control = new Control();
 APP.control.criarTodas();
-
-let remv = APP.grade.removerDisciplina(2, 1);
-APP.grade.adicionarDisciplina(remv, 1, 0);
-APP.view.updateTodas();
 };

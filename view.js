@@ -31,6 +31,21 @@ class View {
 		this.alturaDisciplina = alturaDisciplina;
 	}
 
+	posModeloParaView(posX, posY) {
+		let resultado = {};
+		resultado.x = (posX - 1) * this.larguraDisciplina + APP.margem;
+		resultado.y = posY * this.alturaDisciplina + APP.margem;
+		return resultado;
+	}
+
+	posViewParaModelo(posX, posY) {
+		let resultado = {};
+		resultado.x = Math.round((posX - APP.margem) / this.larguraDisciplina + 1);
+		resultado.y = Math.round((posY - APP.margem) / this.alturaDisciplina);
+		return resultado;
+	}
+		
+
 	update(disciplina) {
 		this.checarTodas();
 		let id = "disciplina" + disciplina.id;
@@ -40,10 +55,10 @@ class View {
 		} else {
 			let imgDOM = document.getElementById(id + "erro");
 			imgDOM.style.visibility = disciplina.errada ? 'visible' : 'hidden';
-			let leftPos = (disciplina.posX - 1) * this.larguraDisciplina + APP.margem;
-			let topPos = disciplina.posY * this.alturaDisciplina + APP.margem;
-			discDOM.style.left = leftPos;
-			discDOM.style.top = topPos;
+
+			let pos = this.posModeloParaView(disciplina.posX, disciplina.posY);
+			discDOM.style.left = pos.x;
+			discDOM.style.top = pos.y;
 			discDOM.style["border-color"] = APP.coresSelecao[disciplina.cor];
 			//discDOM.style["border-width"] = (disciplina.cor == "padrao") ? 1 : APP.bordaSelecao;
 		}
