@@ -112,6 +112,8 @@ class View {
 
 		infoHTML += '<p>Fase padrão: ' + disciplina.fase + '</p>';  
 
+		infoHTML += '<p>Hora/Aula: ' + disciplina.horas + '</p>';  
+
 		infoHTML += '<a href="' + disciplina.ementa + '">Ementa</a>';
 		document.getElementById('info').innerHTML = infoHTML;
 	}
