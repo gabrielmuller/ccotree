@@ -1,10 +1,11 @@
 window.onload = function () {
-//conterá todos objetos disciplina instanciadas
+
+/** Um map do nome da disciplina a objetos disciplina. */
 APP.disciplinas = {};
 
 //instancia todas disciplinas a partir do JSON
 //e adiciona em APP.disciplinas
-APP.tree.criarDisciplinas = function () {
+APP.grafo.criarDisciplinas = function () {
     let that = this;
     Object.keys(that.nodes).forEach(function (node, id) {
         let novaDisciplina = new Disciplina(that.nodes[node], node, id);
@@ -12,7 +13,7 @@ APP.tree.criarDisciplinas = function () {
     });
 };
 
-APP.tree.criarDisciplinas();
+APP.grafo.criarDisciplinas();
 
 //cria grade e view
 APP.view = new View(APP.largura + APP.margem, APP.altura + APP.margem);

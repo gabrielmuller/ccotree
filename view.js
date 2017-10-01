@@ -3,23 +3,6 @@ APP.largura = 100;
 APP.altura = 80;
 APP.margem = 46;
 APP.bordaSelecao = 1;
-APP.coresLinhas = [
-"#E57373",
-"#BA68C8",
-"#64B5F6",
-"#81C784",
-"#FFF176",
-"#FF8A65",
-"#90A4AE"];
-
-APP.coresSelecao = {
-	"padrao": "#FFFFFF",
-	"requisito": "#F8BBD0",
-	"posterior": "#FFE082",
-	"selecionado": "#42A5F5",
-}
-
-
 
 APP.sheet = window.document.styleSheets[0];
 
@@ -75,11 +58,13 @@ class View {
 		haDOM.innerHTML = APP.grade.horasAula(fase) + ' H/A';
 
 		haDOM.innerHTML += '<img id="' + id + 'erro' + 
-	    '" src="erro.png" title="H/A deve ser entre [15, 30]"></div>';
+	    '" src="erro.png" title="H/A deve ser entre ['+
+            APP.intervaloHA.min + ', ' + APP.intervaloHA.max + 
+            ']"></div>';
 	    let imgDOM = document.getElementById(id + "erro");
-	    if (APP.grade.horasAula(fase) > 30) {
+	    if (APP.grade.horasAula(fase) > APP.intervaloHA.max) {
 	     	imgDOM.style.visibility = 'visible';
-	    } else if (APP.grade.horasAula(fase) < 15) {
+	    } else if (APP.grade.horasAula(fase) < APP.intervaloHA.min) {
 	    	imgDOM.style.visibility = 'visible';
 	    } else {
 	    	imgDOM.style.visibility = 'hidden';

@@ -1,6 +1,27 @@
 ﻿// linhas: 1 = SW, 2 = HW, 3 = MTM, 4 = TC, 5 = INTRO, 6 = REDES
-var APP = {};
-APP.tree = {
+let APP = {};
+
+APP.coresLinhas = [
+"#E57373",
+"#BA68C8",
+"#64B5F6",
+"#81C784",
+"#FFF176",
+"#FF8A65",
+"#90A4AE"];
+
+APP.coresSelecao = {
+	"padrao": "#FFFFFF",
+	"requisito": "#F8BBD0",
+	"posterior": "#FFE082",
+	"selecionado": "#42A5F5",
+}
+APP.intervaloHA = {
+    min: 15,
+    max: 30
+}
+
+APP.grafo = {
 "nodes": {
 	"Programação Orientada a Objetos I": {
 		"codigo": "INE5402",
