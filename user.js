@@ -1,6 +1,9 @@
 ﻿// linhas: 1 = SW, 2 = HW, 3 = MTM, 4 = TC, 5 = INTRO, 6 = REDES
+
+/** Container de variáveis globais. */
 let APP = {};
 
+/** Cor de cada linha de disciplinas. */
 APP.coresLinhas = [
 "#E57373",
 "#BA68C8",
@@ -10,17 +13,21 @@ APP.coresLinhas = [
 "#FF8A65",
 "#90A4AE"];
 
+/** Cores de seleção. */
 APP.coresSelecao = {
 	"padrao": "#FFFFFF",
 	"requisito": "#F8BBD0",
 	"posterior": "#FFE082",
 	"selecionado": "#42A5F5",
 }
+
+/** Máximo e mínimo de horas/aula em cada semestre. */
 APP.intervaloHA = {
     min: 15,
     max: 30
 }
 
+/** Todas disciplinas, informações das mesmas e os requisitos. */
 APP.grafo = {
 "nodes": {
 	"Programação Orientada a Objetos I": {
