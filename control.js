@@ -15,7 +15,7 @@ class Control {
 		discDOM.onclick = function () {
 			disciplina.selecionar();
 			APP.view.updateSidebar(disciplina);
-			APP.view.updateTodas();
+            APP.view.updateTodas();
 		}
 
 		let that = this;
@@ -34,29 +34,33 @@ class Control {
             /** Elemento DOM que está sendo arrastado */
 			that.DOMarrastado = discDOM; 
 
-            /** Remove disciplina sendo arrastada do modelo. */
-			APP.grade.removerDisciplina(disciplina.posX, disciplina.posY);
-
             /** Disciplina sendo arrastada. */
 			that.discArrastada = disciplina;
+
+            that.discArrastada.arrastando = true;
+
+            //APP.view.updateTodas();
+
 		}
 
         /** Acaba de arrastar no fim do clique. */
 		document.onmouseup = function() {
-			if(that.arrastando) {
-				that.arrastando = false;
-				that.DOMarrastado.style["z-index"] = 0;
+            that.arrastando = false;
+            that.DOMarrastado.style["z-index"] = 0;
 
-                /** Posição X em pixels do elemento arrastado. */
-				let DOMX = parseInt(that.DOMarrastado.style.left, 10);
+            /** Posição X em pixels do elemento arrastado. */
+            let DOMX = parseInt(that.DOMarrastado.style.left, 10);
 
-                /** Posição Y em pixels do elemento arrastado. */
-				let DOMY = parseInt(that.DOMarrastado.style.top, 10);
+            /** Posição Y em pixels do elemento arrastado. */
+            let DOMY = parseInt(that.DOMarrastado.style.top, 10);
 
-                // Calcula coordenada no modelo e adiciona.
-				let pos = APP.view.posViewParaModelo(DOMX, DOMY);
-				APP.grade.adicionarDisciplina(that.discArrastada, pos.x, pos.y);
-			}
+            /** Remove disciplina sendo arrastada do modelo. */
+            APP.grade.removerDisciplina(that.discArrastada.posX, that.discArrastada.posY);
+
+            // Calcula coordenada no modelo e adiciona.
+            let pos = APP.view.posViewParaModelo(DOMX, DOMY);
+            APP.grade.adicionarDisciplina(that.discArrastada, pos.x, pos.y);
+        
 		}
 
         /** Atualiza posição quando mouse se mexe. */

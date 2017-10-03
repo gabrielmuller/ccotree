@@ -16,7 +16,7 @@ APP.grafo.criarDisciplinas = function () {
 APP.grafo.criarDisciplinas();
 
 // Cria grade, view, control e inicializa
-APP.view = new View(APP.largura + APP.margem, APP.altura + APP.margem);
+APP.view = new View(APP.largura + APP.margemX, APP.altura + APP.margemY);
 APP.grade = new Grade();
 APP.view.criarTodas();
 APP.view.updateTodas();

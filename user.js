@@ -38,7 +38,7 @@ APP.grafo = {
 		"horas": 6,
 		"requisitos": []
 	},
-	"Fundamentos de Matemática Discreta para Computação": {
+	"Matemática Discreta para Computação": {
 		"codigo": "INE5403",
 		"fase": 1,
 		"linha": 4,
@@ -172,7 +172,7 @@ APP.grafo = {
 		"linha": 4,
 		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2621",
 		"horas": 4,
-		"requisitos": ["Estruturas de Dados", "Fundamentos de Matemática Discreta para Computação"]
+		"requisitos": ["Estruturas de Dados", "Matemática Discreta para Computação"]
 	},
 	"Teoria da Computação": {
 		"codigo": "INE5415",
@@ -180,7 +180,7 @@ APP.grafo = {
 		"linha": 4,
 		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2658",
 		"horas": 4,
-		"requisitos": ["Estruturas de Dados", "Fundamentos de Matemática Discreta para Computação"]
+		"requisitos": ["Estruturas de Dados", "Matemática Discreta para Computação"]
 	},
 	"Paradigmas de Programação": {
 		"codigo": "INE5416",
@@ -254,7 +254,7 @@ APP.grafo = {
 		"horas": 4,
 		"requisitos": ["Redes de Computadores I"]
 	},
-	"Introdução ao Trabalho de Conclusão de Curso": {
+	"Introdução ao TCC": {
 		"codigo": "INE5453",
 		"fase": 6,
 		"linha": 1,
@@ -308,7 +308,7 @@ APP.grafo = {
 		"linha": 1,
 		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2584",
 		"horas": 6,
-		"requisitos": ["Introdução ao Trabalho de Conclusão de Curso", "Planejamento e Gestão de Projetos"]
+		"requisitos": ["Introdução ao TCC", "Planejamento e Gestão de Projetos"]
 	},
 	"Banco de Dados II": {
 		"codigo": "INE5432",
@@ -324,7 +324,7 @@ APP.grafo = {
 		"linha": 4,
 		"ementa": "https://planos.inf.ufsc.br/modulos/planos/visualizar.php?id=2636",
 		"horas": 4,
-		"requisitos": ["Fundamentos de Matemática Discreta para Computação", "Redes de Computadores I"]
+		"requisitos": ["Matemática Discreta para Computação", "Redes de Computadores I"]
 	},
 	"Sistemas Multimídia": {
 		"codigo": "INE5431",
