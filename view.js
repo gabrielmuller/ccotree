@@ -18,7 +18,7 @@ APP.sheet.insertRule(".disc {width: "+APP.largura
 
 // Aspectos de animação
 APP.tempoAnimacao = 0.15;
-APP.periodoFrame = 3;
+APP.periodoFrame = 16;
 
 /** View da aplicação. */
 class View {
