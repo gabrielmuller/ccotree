@@ -1,42 +1,29 @@
-// Aspectos gráficos
-
-APP.largura = 100;
-APP.altura = 80;
-APP.margemX = 60;
-APP.margemY = 30;
-APP.margemExterna = 40;
-APP.bordaSelecao = 1;
-
-// Inserir dimensões das disciplinas no stylesheet
-APP.sheet = window.document.styleSheets[0];
-
-APP.sheet.insertRule(".fase {width: "+APP.largura
-+"; height: "+(APP.altura/2)+";}", 0);
-
-APP.sheet.insertRule(".disc {width: "+APP.largura
-+"; height: "+APP.altura+";}", 0);
-
-// Aspectos de animação
-APP.tempoAnimacao = 0.15;
-APP.periodoFrame = 16;
-
 /** View da aplicação. */
 class View {
 
     /**
      * Inicia o View.
-     * @param {number} larguraDisciplina largura do DOM das disciplinas.
-     * @param {number} alturaDisciplina altura do DOM das disciplinas.
+     * @param {Grade} grade grade do modelo.
+     * @param {object} disciplinas todas disciplinas instanciadas.
      */
-	constructor(larguraDisciplina, alturaDisciplina) {
-		this.larguraDisciplina = larguraDisciplina;
-		this.alturaDisciplina = alturaDisciplina;
+	constructor(grade, disciplinas) {
+        this.grade = grade;
+        this.disciplinas = disciplinas;
 
         /** Número de fases no View */
 		this.fases = 1;
 
         /** Disciplinas participando de uma animação no momento. */
         this.animados = [];
+         // Inserir dimensões das disciplinas no stylesheet
+        let sheet = window.document.styleSheets[0];
+
+        sheet.insertRule(".fase {width: "+APP.largura
+        +"px; height: "+(APP.altura/2)+"px;}", 0);
+
+        sheet.insertRule(".disc {width: "+APP.largura
+        +"px; height: "+APP.altura+"px;}", 0);
+
         this.animando = false;
 	}
 
@@ -46,10 +33,12 @@ class View {
      * @param {number} posY posição Y no modelo.
      * @returns {object} coordenadas em pixels x, y.
      */
-	posModeloParaView(posX, posY) {
+	static posModeloParaView(posX, posY) {
 		let resultado = {};
-		resultado.x = (posX - 1) * this.larguraDisciplina + APP.margemExterna;
-		resultado.y = (posY + 0.5) * this.alturaDisciplina + APP.margemExterna;
+        let largura = APP.largura + APP.margemX;
+        let altura = APP.altura + APP.margemY;
+		resultado.x = (posX - 1) * largura + APP.margemExterna;
+		resultado.y = (posY + 0.5) * altura + APP.margemExterna;
 		return resultado;
 	}
 
@@ -59,10 +48,12 @@ class View {
      * @param {number} posY posição Y em pixels.
      * @returns {Object} coordenadas do modelo x, y.
      */
-	posViewParaModelo(posX, posY) {
+	static posViewParaModelo(posX, posY) {
 		let resultado = {};
-		resultado.x = Math.round((posX - APP.margemExterna) / this.larguraDisciplina + 1);
-		resultado.y = Math.round((posY - APP.margemExterna) / this.alturaDisciplina - 0.5);
+        let largura = APP.largura + APP.margemX;
+        let altura = APP.altura + APP.margemY;
+		resultado.x = Math.round((posX - APP.margemExterna) / largura + 1);
+		resultado.y = Math.round((posY - APP.margemExterna) / altura - 0.5);
 		return resultado;
 	}
 		
@@ -93,9 +84,7 @@ class View {
 			imgDOM.style.visibility = disciplina.errada ? 'visible' : 'hidden';
 
             // Atualiza a posição do DOM disciplina.
-			let pos = this.posModeloParaView(disciplina.posX, disciplina.posY);
-			//discDOM.style.left = pos.x;
-			//discDOM.style.top = pos.y;
+			let pos = View.posModeloParaView(disciplina.posX, disciplina.posY);
 
             // Atualiza a cor da borda do DOM disciplina.
 			discDOM.style["border-left-color"] = APP.coresSelecao[disciplina.cor];
@@ -106,7 +95,8 @@ class View {
                 let d = disciplina;
 
                 // Cria novo Animado e adiciona
-                let animado = new Animado(discDOM, d.oldX, d.oldY, d.posX, d.posY, disciplina.arrastando);
+                let animado = new Animado(discDOM, d.oldX, d.oldY, 
+                    d.posX, d.posY, disciplina.arrastando);
                 this.animados.push(animado);
 
                 disciplina.oldX = disciplina.posX;
@@ -169,7 +159,7 @@ class View {
 
         /** Elemento DOM do número de horas/aula. */
 		let haDOM = document.getElementById(id);
-		haDOM.innerHTML = APP.grade.horasAula(fase) + ' H/A';
+		haDOM.innerHTML = this.grade.horasAula(fase) + ' H/A';
 
         // Mostra erro se nro de horas/aula está fora do intervalo
 		haDOM.innerHTML += '<img id="' + id + 'erro' + 
@@ -177,9 +167,9 @@ class View {
             APP.intervaloHA.min + ', ' + APP.intervaloHA.max + 
             ']"></div>';
 	    let imgDOM = document.getElementById(id + "erro");
-	    if (APP.grade.horasAula(fase) > APP.intervaloHA.max) {
+	    if (this.grade.horasAula(fase) > APP.intervaloHA.max) {
 	     	imgDOM.style.visibility = 'visible';
-	    } else if (APP.grade.horasAula(fase) < APP.intervaloHA.min) {
+	    } else if (this.grade.horasAula(fase) < APP.intervaloHA.min) {
 	    	imgDOM.style.visibility = 'visible';
 	    } else {
 	    	imgDOM.style.visibility = 'hidden';
@@ -191,7 +181,7 @@ class View {
      */
 	updateFases() {
         /** Número de fases no modelo. */
-		let len = APP.grade.matriz.length;
+		let len = this.grade.matriz.length;
 
         // Se o View tem mais fases que modelo,
         // remove fases sobrando no View.
@@ -276,11 +266,9 @@ class View {
 
         /** Elemento DOM da fase. */
 		let faseDOM = document.getElementById(id);
-		let pos = this.posModeloParaView(fase, -0.5);
-		faseDOM.style.left = pos.x;
+		let pos = View.posModeloParaView(fase, -0.5);
 
-        /** Ajuste da altura do DOM fase */
-		faseDOM.style.top = pos.y - APP.margemY / 2; 
+        View.posicionar(faseDOM, pos.x, pos.y - APP.margemY / 2);
 	}
 
     /**
@@ -296,11 +284,14 @@ class View {
     /**
      * Realiza um processo em todas disciplinas existentes.
      * @param {function} processo função a ser chamada em cada disciplina.
+     * @param {object} thisVal valor a ser usado como this. Padrão é o view.
      */
-	processarTodas(processo) {
-		Object.keys(APP.disciplinas).forEach(function (nomeDisciplina) {
-			let disciplina = APP.disciplinas[nomeDisciplina];
-			processo.call(this, disciplina);
+	processarTodas(processo, thisVal) {
+        thisVal = thisVal || this;
+
+		Object.keys(this.disciplinas).forEach(function (nomeDisciplina) {
+			let disciplina = this.disciplinas[nomeDisciplina];
+			processo.call(thisVal, disciplina);
 		}, this);
 	}
 	
@@ -325,8 +316,15 @@ class View {
      * Checa os requisitos de cada disciplina.
      */
 	checarTodas() {
-		this.processarTodas(APP.grade.checarRequisitos);
+		this.processarTodas(this.grade.checarRequisitos);
 	}
+
+    static posicionar(DOM, x, y) {
+        DOM.style.left = x + "px";
+        DOM.style.top = y + "px";
+    }
+
+
 }
 		
 /** Elemento animado, com o DOM, posições inicial e final. */
@@ -343,8 +341,8 @@ class Animado {
      */
     constructor(discDOM, oldX, oldY, posX, posY, arrastando) {
         this.discDOM = discDOM;
-        this.old = APP.view.posModeloParaView(oldX, oldY);
-        this.pos = APP.view.posModeloParaView(posX, posY);
+        this.old = View.posModeloParaView(oldX, oldY);
+        this.pos = View.posModeloParaView(posX, posY);
 
         // Se foi solto, pos inicial é a pos do próprio DOM
         if (arrastando) {
@@ -360,8 +358,8 @@ class Animado {
      * 1 é a posição final
      */
     updatePos(progresso) {
-        this.discDOM.style.left = this.interpolar(this.old.x, this.pos.x, progresso);
-        this.discDOM.style.top = this.interpolar(this.old.y, this.pos.y, progresso);
+        View.posicionar(this.discDOM, this.interpolar(this.old.x, this.pos.x, progresso),
+        this.interpolar(this.old.y, this.pos.y, progresso));
     }
 
     /**
@@ -382,11 +380,8 @@ class Animado {
      * Posiciona o elemento adequadamente no final.
      */
     finalizar() {
-        this.discDOM.style.left = this.pos.x;
-        this.discDOM.style.top = this.pos.y;
+        View.posicionar(this.discDOM, this.pos.x, this.pos.y);
     }
 }
-
-
 			
 		

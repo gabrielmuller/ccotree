@@ -1,9 +1,19 @@
 /** Classe controle da aplicação. */
 class Control {
-	constructor() {}
+
+    /**
+     * Cria o controle.
+     * @param {Grade} grade grade do modelo.
+     * @param {View} view view da aplicação.
+     */
+	constructor(grade, view) {
+        this.grade = grade;
+        this.view = view;
+    }
 
     /**
      * Cria um botão para a disciplina.
+     * @param {Disciplina} disciplina disciplina cujo botão será criado.
      */
 	criar(disciplina) {
         /** Elemento DOM da disciplina. */
@@ -11,14 +21,14 @@ class Control {
 
 		discDOM.style.cursor = 'pointer';
 
+		let that = this;
+
         /** Seleciona disciplina ao clicar. */
 		discDOM.onclick = function () {
 			disciplina.selecionar();
-			APP.view.updateSidebar(disciplina);
-            APP.view.updateTodas();
+			that.view.updateSidebar(disciplina);
+            that.view.updateTodas();
 		}
-
-		let that = this;
 
         /** Começa a arrastar no começo do clique */
 		discDOM.onmousedown = function(event) {
@@ -38,49 +48,38 @@ class Control {
 			that.discArrastada = disciplina;
 
             that.discArrastada.arrastando = true;
-
-            //APP.view.updateTodas();
-
 		}
 
         /** Acaba de arrastar no fim do clique. */
 		document.onmouseup = function() {
-            that.arrastando = false;
-            that.DOMarrastado.style["z-index"] = 0;
+            if (that.arrastando) {
+                that.arrastando = false;
+                that.DOMarrastado.style["z-index"] = 0;
 
-            /** Posição X em pixels do elemento arrastado. */
-            let DOMX = parseInt(that.DOMarrastado.style.left, 10);
+                /** Posição X em pixels do elemento arrastado. */
+                let DOMX = parseInt(that.DOMarrastado.style.left, 10);
 
-            /** Posição Y em pixels do elemento arrastado. */
-            let DOMY = parseInt(that.DOMarrastado.style.top, 10);
+                /** Posição Y em pixels do elemento arrastado. */
+                let DOMY = parseInt(that.DOMarrastado.style.top, 10);
 
-            /** Remove disciplina sendo arrastada do modelo. */
-            APP.grade.removerDisciplina(that.discArrastada.posX, that.discArrastada.posY);
+                /** Remove disciplina sendo arrastada do modelo. */
+                that.grade.removerDisciplina(that.discArrastada.posX, that.discArrastada.posY);
 
-            // Calcula coordenada no modelo e adiciona.
-            let pos = APP.view.posViewParaModelo(DOMX, DOMY);
-            APP.grade.adicionarDisciplina(that.discArrastada, pos.x, pos.y);
+                // Calcula coordenada no modelo e adiciona.
+                let pos = View.posViewParaModelo(DOMX, DOMY);
+                that.grade.adicionarDisciplina(that.discArrastada, pos.x, pos.y);
+            }
         
 		}
 
         /** Atualiza posição quando mouse se mexe. */
 		document.onmousemove = function(event) {
 			if (that.arrastando) {
-				that.DOMarrastado.style.left = event.clientX - that.posRelativaX;
-				that.DOMarrastado.style.top = event.clientY - that.posRelativaY;
+                View.posicionar(that.DOMarrastado,
+                event.clientX - that.posRelativaX,
+                event.clientY - that.posRelativaY);
 			}
 		}
 	}
-		
-    /**
-     * Cria todos botões.
-     */
-	criarTodas() {
-		Object.keys(APP.disciplinas).forEach(function (nomeDisciplina) {
-			this.criar(APP.disciplinas[nomeDisciplina]);
-		}, this);
-	}
 }
-
-			
 			

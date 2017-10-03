@@ -1,7 +1,22 @@
 ﻿// linhas: 1 = SW, 2 = HW, 3 = MTM, 4 = TC, 5 = INTRO, 6 = REDES
 
-/** Container de variáveis globais. */
+/** Container de constantes globais. */
 let APP = {};
+
+// Aspectos gráficos
+
+APP.largura = 100;
+APP.altura = 80;
+APP.margemX = 60;
+APP.margemY = 30;
+APP.margemExterna = 40;
+APP.bordaSelecao = 1;
+
+// Aspectos de animação
+APP.tempoAnimacao = 0.15;
+APP.periodoFrame = 16;
+
+
 
 /** Cor de cada linha de disciplinas. */
 APP.coresLinhas = [
