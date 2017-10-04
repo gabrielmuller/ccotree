@@ -319,6 +319,11 @@ class View {
 		this.processarTodas(this.grade.checarRequisitos);
 	}
 
+    /**
+     * Posiciona um elemento DOM nas coordenadas x, y.
+     * @param {number} x coordenada x em pixels.
+     * @param {number} y coordenada y em pixels.
+     */
     static posicionar(DOM, x, y) {
         DOM.style.left = x + "px";
         DOM.style.top = y + "px";
@@ -358,8 +363,8 @@ class Animado {
      * 1 é a posição final
      */
     updatePos(progresso) {
-        View.posicionar(this.discDOM, this.interpolar(this.old.x, this.pos.x, progresso),
-        this.interpolar(this.old.y, this.pos.y, progresso));
+        View.posicionar(this.discDOM, Animado.interpolar(this.old.x, this.pos.x, progresso),
+        Animado.interpolar(this.old.y, this.pos.y, progresso));
     }
 
     /**
@@ -369,7 +374,7 @@ class Animado {
      * @param {number} b p = 1
      * @param {number} p entre 0 e 1
      */
-    interpolar(a, b, p) {
+    static interpolar(a, b, p) {
         p = 1-p;
         p = p*p;
         p = 1-p;
