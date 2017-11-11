@@ -2,24 +2,37 @@
 
 $codigo = $_GET['codigo'];
 
-$con = pg_connect("host=localhost port=5432 user=postgres dbname=ccotree");
+$con = new mysqli("localhost", "root", "password", "grade");
 if (!$con) {
-    die('Could not connect: ' . pg_last_error($con));
+    die('Could not connect: ' . $con->connect_error);
+}
+$con->set_charset("utf8");
+$sql="SELECT * FROM disciplinas WHERE Codigo = '$codigo' ";
+if ($result = $con->query($sql)) {
+    $row = $result->fetch_assoc();
+    $json = array(
+        "codigo"=>$codigo,
+        "nome"=>$row["Nome"],
+        "fase"=>$row["Fase"],
+        "linha"=>$row["Linha"],
+        "ementa"=>$row["Ementa"],
+        "horas"=>$row["Horas"]);
+} else {
+    die('0 resultados');
 }
 
-$sql="SELECT * FROM Disciplina WHERE Codigo = '$codigo' ";
-$result = pg_query($con,$sql);
+$sql="SELECT * FROM requisitos WHERE posterior = '$codigo' ";
 
-while($row = pg_fetch_row($result)) {
-  $data = array ('codigo' => $row[0],
-                  'nome' => $row[1],
-                  'fase' => $row[2],
-                  'linha' => $row[3],
-                  'ementa' => $row[4],
-                  'horas' => $row[5],);
-  echo json_encode($data);
+if ($result = $con->query($sql)) {
+    $json["requisitos"] = array();
+    while ($row = $result->fetch_assoc()) {
+        array_push($json["requisitos"], $row["requisito"]);
+    }
+} else {
+    die('0 resultados');
 }
 
-pg_close($con);
+echo json_encode($json, JSON_UNESCAPED_UNICODE);
+$con->close();
 
 ?>
