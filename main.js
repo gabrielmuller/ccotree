@@ -1,5 +1,9 @@
 window.onload = function () {
 
+if (typeof window.orientation !== 'undefined') {
+    alert("Aviso: essa ferramenta não foi feita para dispositivos móveis.");
+}
+APP.tempoAnimacao = 0;
 // Cria um objeto que mapeia os nomes das disciplinas aos objetos Disciplina.
 let disciplinas = {};
 Object.keys(APP.grafo.nodes).forEach(function (node, id) {

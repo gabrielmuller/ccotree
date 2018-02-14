@@ -24,6 +24,11 @@ class View {
         sheet.insertRule(".disc {width: "+APP.largura
         +"px; height: "+APP.altura+"px;}", 0);
 
+        Object.keys(APP.coresSelecao).forEach(function (nome) {
+            sheet.insertRule("#"+nome+"{border-left-color: "+
+                this[nome] + ";}");
+        }, APP.coresSelecao);
+
         this.animando = false;
 	}
 
@@ -214,11 +219,12 @@ class View {
 	updateSidebar(disciplina) {
         /** Código HTML da informação */
 		let infoHTML = "";
-		infoHTML += '<p class="titulo">' + disciplina.codigo 
-		+ ' - ' + disciplina.nome + '</p>';
+		infoHTML += '<h1>' + disciplina.codigo 
+		+ ' - ' + disciplina.nome + '</h1>';
 		infoHTML += '<p>Fase padrão: ' + disciplina.fase + '</p>';  
 		infoHTML += '<p>Aulas por semana: ' + disciplina.horas + '</p>';  
-		infoHTML += '<a href="' + disciplina.ementa + '">Ementa</a>';
+		infoHTML += '<p><a href="' + disciplina.ementa + '">Ementa</a></p>';
+        infoHTML += '<hr>';
 		document.getElementById('info').innerHTML = infoHTML;
 	}
 
@@ -236,7 +242,7 @@ class View {
 		let discDOM = document.getElementById(id);
 
         // Adiciona barra que representa a linha da disciplina.
-        discDOM.insertAdjacentHTML('beforeend', '<hr id="' + id + 'cor"></div>');
+        discDOM.insertAdjacentHTML('beforeend', '<hr class="linha" id="' + id + 'cor"></div>');
 
         // Adiciona código da disciplina.
         discDOM.insertAdjacentHTML('beforeend', disciplina.codigo);

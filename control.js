@@ -30,6 +30,19 @@ class Control {
             that.view.updateTodas();
 		}
 
+        let sideDOM = document.getElementById('sidebar');
+        let toggleDOM = document.getElementById('toggle');
+        toggleDOM.onclick = function () {
+            sideDOM.style.display = 'block';
+            toggleDOM.style.display = 'none';
+        }
+
+        let closeDOM = document.getElementById('close');
+        closeDOM.onclick = function () {
+            sideDOM.style.display = 'none';
+            toggleDOM.style.display = 'block';
+        }
+
         /** Começa a arrastar no começo do clique */
 		discDOM.onmousedown = function(event) {
             // Posição relativa do mouse ao elemento DOM deve ser constante
@@ -51,7 +64,7 @@ class Control {
 		}
 
         /** Acaba de arrastar no fim do clique. */
-		document.onmouseup = function() {
+		let endDrag = function() {
             if (that.arrastando) {
                 that.arrastando = false;
                 that.DOMarrastado.style["z-index"] = 0;
@@ -68,6 +81,7 @@ class Control {
                 // Calcula coordenada no modelo e adiciona.
                 let pos = View.posViewParaModelo(DOMX, DOMY);
                 that.grade.adicionarDisciplina(that.discArrastada, pos.x, pos.y);
+                console.log("OOKAY");
             }
         
 		}
@@ -80,6 +94,10 @@ class Control {
                 event.clientY - that.posRelativaY);
 			}
 		}
+
+        document.onmouseup = endDrag;
+        window.onblur = endDrag;
+        window.onfocus = endDrag;
 	}
 }
 			

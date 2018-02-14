@@ -2,17 +2,44 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <title>Grade interativa</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 	<script src='user.js' type='text/javascript' charset='utf-8'></script>
-	<script src='model.js' type='text/javascript'charset='utf-8'></script>
+	<script src='model.js' type='text/javascript' charset='utf-8'></script>
 	<script src='view.js' type='text/javascript' charset='utf-8'></script>
 	<script src='control.js' type='text/javascript' charset='utf-8'></script>
 	<script src='main.js' type='text/javascript' charset='utf-8'></script>
 
-	<div id="info"></div>
+    <img src='toggle.png' id="toggle" class="side">
+    <div id="sidebar" class="shadow side">
+        <p id="close">✕</p>
+        <div id="info">
+        </div>
+
+        <div id="about">
+            <h1>Ciências da Computação</h1>
+            <h2>Grade curricular interativa</h2>
+            <p>Clique numa disciplina para ver informações ou arraste para planejar
+            seu currículo.</p>
+            <h2>Legenda</h2>
+
+            <p class="color" id="selecionado">Disciplina selecionada</p>
+            
+            <p class="color" id="requisito">Pré-requisito da seleção</p>
+
+            <p class="color" id="posterior">Seleção é pré-requisito</p>
+
+            <hr>
+
+            <footer>
+                <p>Feito por Gabriel Müller e Juliana Pinheiro</p>
+                <p><a href="https://github.com/gabrielmuller/ccotree">Código-fonte no GitHub</a></p>
+            </footer>
+        </div>
+    </div>
 
 </body>
 
